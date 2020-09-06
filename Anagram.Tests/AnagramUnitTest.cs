@@ -11,15 +11,15 @@ namespace Anagram.Tests
         [Fact]
         public void RecognizesShuffledAlphabetsAsAnagrams()
         {
-            AnagramSelector selector = new AnagramSelector();
-            Assert.True(selector.WordPairIsAnagram("restful", "fluster"));
-            Assert.True(selector.WordPairIsAnagram("forty five", "over fifty"));
+            AnagramChecker checker= new AnagramChecker();
+            Assert.True(checker.WordPairIsAnagram("restful", "fluster"));
+            Assert.True(checker.WordPairIsAnagram("forty five", "over fifty"));
         }
         [Fact]
         public void ReportsNonAnagrams()
         {
-            AnagramSelector selector = new AnagramSelector();
-            Assert.False(selector.WordPairIsAnagram("something", "else"));
+            AnagramChecker checker= new AnagramChecker();
+            Assert.False(checker.WordPairIsAnagram("something", "else"));
         }
         [Fact]
         public void SelectsAnagramsOfAWord()
@@ -31,5 +31,16 @@ namespace Anagram.Tests
             Assert.True(selection.SequenceEqual(
                 new List<string>{"stream", "maters"}));
         }
+        [Fact]
+        public void DisplayEmptyListWhenNoAnagramIsPresentInTheList()
+        {
+            AnagramSelector selector = new AnagramSelector();
+            var selection = selector.SelectAnagrams("listen",
+                new List<string>{"list", "help", "sit"});
+            Assert.True(selection.SequenceEqual(
+                new List<string>{}));
+
+        }
+
     }
 }
