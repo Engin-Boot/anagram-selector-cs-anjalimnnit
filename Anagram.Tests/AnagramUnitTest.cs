@@ -31,5 +31,16 @@ namespace Anagram.Tests
             Assert.True(selection.SequenceEqual(
                 new List<string>{"stream", "maters"}));
         }
+        [Fact]
+        public void DisplayEmptyListWhenNoAnagramIsPresentInTheList()
+        {
+            AnagramSelector selector = new AnagramSelector();
+            var selection = selector.SelectAnagrams("listen",
+                new List<string>{"list", "help", "sit"});
+            Assert.True(selection.SequenceEqual(
+                new List<string>{}));
+
+        }
+
     }
 }

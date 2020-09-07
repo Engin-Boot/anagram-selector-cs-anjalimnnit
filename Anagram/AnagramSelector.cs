@@ -10,8 +10,12 @@ namespace Anagram
             for(int i=0;i<candidates.Count;i++)
             {
             if(!checker.WordPairIsAnagram(candidates[i],word))
+            {
             candidates.Remove(candidates[i]);
+            i--;
             }
+            }
+            
             return candidates;
         }
     }
